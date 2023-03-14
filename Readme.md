@@ -8,6 +8,6 @@ It is a project for the course "CMPE230 Systems Programming" at the Bogazici Uni
 Run the following command in the terminal:
 
 ```bash
-$ make
-$ ./advcalc
+make
+./advcalc
 ```
