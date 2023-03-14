@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "operators.h"
+#include "lib/math.h"
 
 int32_t main() {
     while(1){
