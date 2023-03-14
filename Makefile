@@ -4,7 +4,7 @@
 CC = gcc
 
 SRCS = ./src/main.c
-EXEC = advcal
+EXEC = advcalc
 
 all:
 # if executable exists, remove it
