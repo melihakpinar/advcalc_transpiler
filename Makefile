@@ -11,4 +11,4 @@ all: $(SRC)
 	@ $(CC) $(CFLAGS) $(SRC) -o $(EXEC) $(INC)
 
 clean:
-	@ rm $(EXEC)
+	@ if [ -f $(EXEC) ]; then rm $(EXEC); fi
