@@ -6,9 +6,10 @@ SRC = $(wildcard ./src/*/*.c)
 EXEC = advcalc
 INC = -I./src
 
-all: $(SRC)
-	@ if [ -f $(EXEC) ]; then rm $(EXEC); fi
+all:
+	@ $(clean)
 	@ $(CC) $(CFLAGS) $(SRC) -o $(EXEC) $(INC)
 
 clean:
 	@ if [ -f $(EXEC) ]; then rm $(EXEC); fi
+	
