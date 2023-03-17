@@ -1,14 +1,31 @@
 #include "validator.h"
 
-bool is_assignment(char* str){
+#include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
+
+bool is_assignment(char* str, bool* error_flag){
     int equals_cnt = 0;
+    int equal_index = 0;
     for(int i = 0; i < strlen(str); i++){
-        if(str[i] == '=')
+        if(str[i] == '='){
             equals_cnt++;
-        if(equals_cnt > 1)
+            equal_index = i;
+        }
+        if(equals_cnt > 1){
+            *error_flag = true;
             return false;
+        }
     }
-    return equals_cnt == 1;
+    if(equals_cnt == 0)
+        return false;
+    char* variable;
+    strncpy(variable, str, equal_index);
+    if(!is_variable(variable)){
+        *error_flag = true;
+        return false;
+    }
+    return true;
 }
 
 bool is_variable(char* str){
@@ -30,7 +47,7 @@ bool is_variable(char* str){
     return true;
 }
 
-bool is_paranthesis_valid(char* str){
+bool is_paranthesis_valid(char* str, bool* error_flag){
     int paranthesis = 0;
     for(int i = 0; i < strlen(str); i++){
         if(str[i] == '(')
