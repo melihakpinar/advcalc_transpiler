@@ -4,8 +4,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-bool is_valid_expression(char* str);
-
 bool is_assignment(char* str);
 
 bool is_variable(char* str);

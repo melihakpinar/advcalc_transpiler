@@ -1,11 +1,5 @@
 #include "validator.h"
 
-bool is_valid_expression(char* str){
-    if(!is_paranthesis_valid(str))
-        return false;
-    // TODO: complete here
-}
-
 bool is_assignment(char* str){
     int equals_cnt = 0;
     for(int i = 0; i < strlen(str); i++){
