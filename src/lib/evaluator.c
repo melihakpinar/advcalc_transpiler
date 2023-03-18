@@ -20,16 +20,27 @@ bool isOperatorOrderCorrect(char* expression) {
     return 1;
 }
 
-bool doesExpressionStartWithOperator(char* expression) {
+bool doesExpressionStartOrEndWithOperator(char* expression) {
     for (int i = 0; expression[i]; i++) {
         if (expression[i] == ' ') {
             continue;
         } else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '&' || expression[i] == '|') {
             return 1;
         } else {
-            return 0;
+            break;
         }
     }
+
+    for (int i = strlen(expression) - 1; i >= 0; i--) {
+        if (expression[i] == ' ') {
+            continue;
+        } else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '&' || expression[i] == '|') {
+            return 1;
+        } else {
+            break;
+        }
+    }
+
     return 0;
 }
 
