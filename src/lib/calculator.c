@@ -6,6 +6,8 @@ void calculator(char* input){
         map = map_construct(N);
     }
 
+    remove_comments(input);
+
     bool error_flag = false;
     bool is_assignment_flag = is_assignment(input, &error_flag);
 
@@ -14,8 +16,8 @@ void calculator(char* input){
         return;
     }
 
-    char* expression;
-    char* variable;
+    char* expression = "";
+    char* variable = "";
     strncpy(expression, input, strlen(input));
 
     if(is_assignment_flag){
@@ -30,7 +32,7 @@ void calculator(char* input){
         map_assign(map, variable, value);
     }
     else{
-        printf("%lld\n", value);
+        printf("%d\n", value);
     }
 }
 
@@ -41,4 +43,13 @@ int find_assignment_sign(char* input){
         }
     }
     return -1;
+}
+
+void remove_comments(char* input){
+    for(int i = 0; i < strlen(input); i++){
+        if(input[i] == '%'){
+            input[i] = '\0';
+            return;
+        }
+    }
 }
