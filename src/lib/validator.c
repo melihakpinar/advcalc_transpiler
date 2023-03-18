@@ -1,9 +1,5 @@
 #include "validator.h"
 
-#include <stdbool.h>
-#include <ctype.h>
-#include <string.h>
-
 bool is_assignment(char* str, bool* error_flag){
     int equals_cnt = 0;
     int equal_index = 0;
