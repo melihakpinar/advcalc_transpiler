@@ -26,6 +26,12 @@ void calculator(char* input){
         strncpy(expression, input + assignment_index + 1, strlen(input) - assignment_index - 1);
     }
 
+    is_paranthesis_valid(expression, &error_flag);
+    if(error_flag){
+        printf("Error!\n");
+        return;
+    }
+
     int value = 0; // TODO: call evaluator here with expression
 
     if(is_assignment_flag){
