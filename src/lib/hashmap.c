@@ -1,8 +1,5 @@
 #include "hashmap.h"
 
-#include <stdlib.h>
-#include <string.h>
-
 hashmap* map_construct(int size){
     hashmap* new_map = (hashmap*) malloc (sizeof(hashmap));
     new_map->container = (int*) malloc (size * sizeof(int));
