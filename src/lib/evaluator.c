@@ -1,6 +1,5 @@
 #include "evaluator.h"
 #include "math.h"
-#include "tokenizer.h"
 #include "validator.h"
 #include <ctype.h>
 
@@ -78,7 +77,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     return 0;
                 }
                 i = k - 1;
-                values[values_count++] = xor(first_operand_value, second_operand_value);
+                values[values_count++] = bxor(first_operand_value, second_operand_value);
             }
             else if (type == 1) {
                 int j = i + 1;
@@ -212,7 +211,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     return 0;
                 }
                 i = j - 1;
-                values[values_count++] = not(first_operand_value);
+                values[values_count++] = bnot(first_operand_value);
             }
             else { // No keywords, normal brackets
                 int j = i + 1;
@@ -276,7 +275,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
     // Do all * operations
     for (int i = 0; i < strlen(sign_operators); i++) {
         if (sign_operators[i] == '*') {
-            values[i] = multiple(values[i], values[i + 1])
+            values[i] = multiple(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
@@ -291,7 +290,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
     // Do all + and - operations
     for (int i = 0; i < strlen(sign_operators); i++) {
         if (sign_operators[i] == '+') {
-            values[i] = sum(values[i], values[i + 1])
+            values[i] = sum(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }

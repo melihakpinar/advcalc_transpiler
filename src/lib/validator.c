@@ -17,7 +17,7 @@ bool isAssignment(char* str, bool* error_flag){
         return false;
     char* variable;
     strncpy(variable, str, equal_index);
-    if(!is_variable(variable)){
+    if(!isVariable(variable)){
         *error_flag = true;
         return false;
     }
@@ -37,7 +37,7 @@ bool isVariable(char* str){
     *(str + r + 1) = '\0';
     char** operations = {"xor", "ls", "rs", "lr", "rr", "not"};
     for(int i = 0; i < 6; i++){
-        if(is_equal(str + l, operations[i]))
+        if(isEqual(str + l, operations[i]))
             return false;
     }
     return true;
@@ -64,4 +64,55 @@ bool isEqual(char* str1, char* str2){
             return false;
     }
     return true;
+}
+
+bool isOperatorOrderCorrect(char* expression) {
+    // There should not be two operators in a row (ignoring spaces)
+    // Operators are +, -, *, &, |
+    // If the order is not correct, return 0
+    // If the order is correct, return 1
+    for (int i = 0; expression[i]; i++) {
+        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '&' || expression[i] == '|') {
+            for (int j = i + 1; expression[j]; j++) {
+                if (expression[j] == ' ') {
+                    continue;
+                } else if (expression[j] == '+' || expression[j] == '-' || expression[j] == '*' || expression[j] == '&' || expression[j] == '|') {
+                    return 0;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
+bool doesExpressionStartOrEndWithOperator(char* expression) {
+    for (int i = 0; expression[i]; i++) {
+        if (expression[i] == ' ') {
+            continue;
+        } else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '&' || expression[i] == '|') {
+            return 1;
+        } else {
+            break;
+        }
+    }
+    for (int i = strlen(expression) - 1; i >= 0; i--) {
+        if (expression[i] == ' ') {
+            continue;
+        } else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '&' || expression[i] == '|') {
+            return 1;
+        } else {
+            break;
+        }
+    }
+    return 0;
+}
+
+bool isValid(char* expression) {
+    bool validity = true;
+    validity &= areBracketsBalanced(expression);
+    validity &= isOperatorOrderCorrect(expression);
+    validity &= !doesExpressionStartOrEndWithOperator(expression);
+    return validity;
 }
