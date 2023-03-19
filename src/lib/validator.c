@@ -1,6 +1,6 @@
 #include "validator.h"
 
-bool is_assignment(char* str, bool* error_flag){
+bool isAssignment(char* str, bool* error_flag){
     int equals_cnt = 0;
     int equal_index = 0;
     for(int i = 0; i < strlen(str); i++){
@@ -24,7 +24,7 @@ bool is_assignment(char* str, bool* error_flag){
     return true;
 }
 
-bool is_variable(char* str){
+bool isVariable(char* str){
     int l = 0;
     int r = strlen(str) - 1;
     while(l < r && str[l] == ' ') l++;
@@ -43,7 +43,7 @@ bool is_variable(char* str){
     return true;
 }
 
-bool is_paranthesis_valid(char* str, bool* error_flag){
+bool areBracketsBalanced(char* str){
     int paranthesis = 0;
     for(int i = 0; i < strlen(str); i++){
         if(str[i] == '(')
@@ -56,7 +56,7 @@ bool is_paranthesis_valid(char* str, bool* error_flag){
     return paranthesis == 0;
 }
 
-bool is_equal(char* str1, char* str2){
+bool isEqual(char* str1, char* str2){
     if(strlen(str1) != strlen(str2))
         return false;
     for(int i = 0; i < strlen(str1); i++){

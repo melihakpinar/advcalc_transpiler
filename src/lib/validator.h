@@ -5,12 +5,12 @@
 #include <ctype.h>
 #include <string.h>
 
-bool is_assignment(char* str, bool* error_flag);
+bool isAssignment(char* str, bool* error_flag);
 
-bool is_variable(char* str);
+bool isVariable(char* str);
 
-bool is_paranthesis_valid(char* str, bool* error_flag);
+bool areBracketsBalanced(char* str);
 
-bool is_equal(char* str1, char* str2);
+bool isEqual(char* str1, char* str2);
 
 #endif
