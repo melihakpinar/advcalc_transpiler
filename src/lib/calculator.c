@@ -55,7 +55,7 @@ void calculator(char* input){
 }
 
 int find_assignment_sign(char* input){
-    for(int i = 0; i < strlen(input); i++){
+    for(int i = 0; i < (int)strlen(input); i++){
         if(input[i] == '='){
             return i;
         }
@@ -64,7 +64,7 @@ int find_assignment_sign(char* input){
 }
 
 void remove_comments(char* input){
-    for(int i = 0; i < strlen(input); i++){
+    for(int i = 0; i < (int)strlen(input); i++){
         if(input[i] == '%'){
             input[i] = '\0';
             return;
@@ -73,7 +73,7 @@ void remove_comments(char* input){
 }
 
 bool isBlank(char* input){
-    for(int i = 0; i < strlen(input); i++){
+    for(int i = 0; i < (int)strlen(input); i++){
         if(input[i] != ' '){
             return false;
         }

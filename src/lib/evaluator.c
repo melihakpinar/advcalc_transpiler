@@ -309,19 +309,19 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             values[values_count++] = atoi(number);
         }
     }
-    if (values_count - 1 != strlen(sign_operators)) {
+    if (values_count - 1 != (int)strlen(sign_operators)) {
         *error_flag = 1;
         return 0;
     }
     // Do all * operations
-    for (int i = 0; i < strlen(sign_operators); i++) {
+    for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '*') {
             values[i] = multiple(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
             values_count--;
-            for (int j = i; j < strlen(sign_operators) - 1; j++) {
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
                 sign_operators[j] = sign_operators[j + 1];
             }
             sign_operators[strlen(sign_operators) - 1] = 0;
@@ -329,14 +329,14 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
         }
     }
     // Do all + and - operations
-    for (int i = 0; i < strlen(sign_operators); i++) {
+    for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '+') {
             values[i] = sum(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
             values_count--;
-            for (int j = i; j < strlen(sign_operators) - 1; j++) {
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
                 sign_operators[j] = sign_operators[j + 1];
             }
             sign_operators[strlen(sign_operators) - 1] = 0;
@@ -348,7 +348,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 values[j] = values[j + 1];
             }
             values_count--;
-            for (int j = i; j < strlen(sign_operators) - 1; j++) {
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
                 sign_operators[j] = sign_operators[j + 1];
             }
             sign_operators[strlen(sign_operators) - 1] = 0;
@@ -356,14 +356,14 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
         }
     }
     // Do all & operations
-    for (int i = 0; i < strlen(sign_operators); i++) {
+    for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '&') {
             values[i] = band(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
             values_count--;
-            for (int j = i; j < strlen(sign_operators) - 1; j++) {
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
                 sign_operators[j] = sign_operators[j + 1];
             }
             sign_operators[strlen(sign_operators) - 1] = 0;
@@ -371,14 +371,14 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
         }
     }
     // Do all | operations
-    for (int i = 0; i < strlen(sign_operators); i++) {
+    for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '|') {
             values[i] = bor(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
             values_count--;
-            for (int j = i; j < strlen(sign_operators) - 1; j++) {
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
                 sign_operators[j] = sign_operators[j + 1];
             }
             sign_operators[strlen(sign_operators) - 1] = 0;

@@ -9,7 +9,7 @@ hashmap* map_construct(int size){
 
 int hash(char* string){
     int hash_value = 0;
-    for(int i = 0; i < strlen(string); i++){
+    for(int i = 0; i < (int)strlen(string); i++){
         hash_value *= P;
         hash_value += string[i] - 'A';
         hash_value %= N;

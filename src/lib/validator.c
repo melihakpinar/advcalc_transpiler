@@ -3,7 +3,7 @@
 bool isAssignment(char* str, bool* error_flag){
     int equals_cnt = 0;
     int equal_index = 0;
-    for(int i = 0; i < strlen(str); i++){
+    for(int i = 0; i < (int)strlen(str); i++){
         if(str[i] == '='){
             equals_cnt++;
             equal_index = i;
@@ -48,7 +48,7 @@ bool isKeyword(char* str){
 
 bool areBracketsBalanced(char* str){
     int paranthesis = 0;
-    for(int i = 0; i < strlen(str); i++){
+    for(int i = 0; i < (int)strlen(str); i++){
         if(str[i] == '(')
             paranthesis++;
         else if(str[i] == ')')
@@ -62,7 +62,7 @@ bool areBracketsBalanced(char* str){
 bool isEqual(char* str1, char* str2){
     if(strlen(str1) != strlen(str2))
         return false;
-    for(int i = 0; i < strlen(str1); i++){
+    for(int i = 0; i < (int)strlen(str1); i++){
         if(str1[i] != str2[i])
             return false;
     }
