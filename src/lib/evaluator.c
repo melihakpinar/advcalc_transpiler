@@ -13,7 +13,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
     int values_count = 0;
     for (int i = 0; expression[i]; i++) {
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*'|| expression[i] == '&' || expression[i] == '|') {
-            strcat(sign_operators, expression[i]);
+            sign_operators[str(len(sign_operators))] = expression[i];
         }
         if (expression[i] == '(') {
             int keyword_index = i - 1; // variable to find the keyword
@@ -224,11 +224,11 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     }
                 }
                 first_operand[j - i - 1] = 0;
+                values[values_count++] = evaluate(first_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = j - 1;
-                values[values_count++] = evaluate(first_operand, variables, error_flag);
             }
         }
         if (isalpha(expression[i])) {
@@ -344,4 +344,5 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             i--;
         }
     }
+    return values[0];
 }
