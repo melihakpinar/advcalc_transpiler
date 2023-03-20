@@ -29,7 +29,6 @@ bool isVariable(char* str){
     int r = strlen(str) - 1;
     while(l < r && str[l] == ' ') l++;
     while(l < r && str[r] == ' ') r--;
-    if(l == r) return false;
     for(int i = l; i <= r; i++){
         if(!isalpha(str[i])) 
             return false;
