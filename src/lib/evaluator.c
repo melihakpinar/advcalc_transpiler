@@ -4,7 +4,7 @@
 #include <ctype.h>
 
 int evaluate(char* expression, hashmap* variables, bool* error_flag) {
-    if (isValid(expression)) {
+    if (!isValid(expression)) {
         *error_flag = 1;
         return 0;
     }
@@ -76,7 +76,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = k - 1;
+                i = k;
                 values[values_count++] = bxor(first_operand_value, second_operand_value);
             }
             else if (type == 1) {
@@ -105,7 +105,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = k - 1;
+                i = k;
                 values[values_count++] = ls(first_operand_value, second_operand_value);
             }
             else if (type == 2) {
@@ -134,7 +134,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = k - 1;
+                i = k;
                 values[values_count++] = rs(first_operand_value, second_operand_value);
             }
             else if (type == 3) {
@@ -163,7 +163,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = k - 1;
+                i = k;
                 values[values_count++] = lr(first_operand_value, second_operand_value);
             }
             else if (type == 4) {
@@ -192,7 +192,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = k - 1;
+                i = k;
                 values[values_count++] = rr(first_operand_value, second_operand_value);
             }
             else if (type == 5) {
@@ -210,7 +210,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = j - 1;
+                i = j;
                 values[values_count++] = bnot(first_operand_value);
             }
             else { // No keywords, normal brackets
@@ -228,7 +228,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 if (*error_flag == 1) {
                     return 0;
                 }
-                i = j - 1;
+                i = j;
             }
         }
         if (isalpha(expression[i])) {
