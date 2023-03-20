@@ -27,7 +27,7 @@ void calculator(char* input){
 
     if(is_assignment_flag){
         int assignment_index = find_assignment_sign(input);
-        strncpy(variable, input, assignment_index);
+        copyVariable(variable, input, assignment_index);
         strncpy(expression, input + assignment_index + 1, strlen(input) - assignment_index - 1);
     }
     else{
@@ -40,7 +40,7 @@ void calculator(char* input){
     }
 
     int value = evaluate(expression, map, &error_flag);
-
+    
     if(is_assignment_flag){
         map_assign(map, variable, value);
     }
@@ -74,4 +74,14 @@ bool isBlank(char* input){
         }
     }
     return true;
+}
+
+void copyVariable(char* variable, char* input, int size){
+    int i = 0, j = 0;
+    while(input[i] == ' '){
+        i++;
+    }
+    for(; i < size && input[i] && input[i] != ' '; i++){
+        variable[j++] = input[i];
+    }
 }

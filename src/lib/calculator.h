@@ -17,4 +17,6 @@ void remove_comments(char* input);
 
 bool isBlank(char* input);
 
+void copyVariable(char* variable, char* input, int size);
+
 #endif
