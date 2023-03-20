@@ -13,7 +13,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
     int values_count = 0;
     for (int i = 0; expression[i]; i++) {
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*'|| expression[i] == '&' || expression[i] == '|') {
-            sign_operators[str(len(sign_operators))] = expression[i];
+            sign_operators[strlen(sign_operators)] = expression[i];
         }
         if (expression[i] == '(') {
             int keyword_index = i - 1; // variable to find the keyword
