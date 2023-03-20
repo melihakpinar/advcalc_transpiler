@@ -8,7 +8,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
         *error_flag = 1;
         return 0;
     }
-    char* sign_operators = "";
+    char sign_operators[256] = "";
     int values[256];
     int values_count = 0;
     for (int i = 0; expression[i]; i++) {
