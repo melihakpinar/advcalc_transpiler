@@ -17,7 +17,7 @@ bool isAssignment(char* str, bool* error_flag){
         return false;
     char* variable;
     strncpy(variable, str, equal_index);
-    if(!isVariable(variable)){
+    if(!isVariable(variable) || isKeyword(variable)){
         *error_flag = true;
         return false;
     }
