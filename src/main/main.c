@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <string.h>
 
-#include "lib/math.h"
 #include "lib/calculator.h"
 
 int32_t main() {

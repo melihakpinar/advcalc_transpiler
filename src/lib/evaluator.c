@@ -1,7 +1,4 @@
 #include "evaluator.h"
-#include "math.h"
-#include "validator.h"
-#include <ctype.h>
 
 int evaluate(char* expression, hashmap* variables, bool* error_flag) {
     if (!isValid(expression)) {
