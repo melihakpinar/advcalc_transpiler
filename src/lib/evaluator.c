@@ -246,8 +246,13 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             }
             variable_name[k] = 0;
             if (!isVariable(variable_name)) {
+                // Check if the variable name is valid
                 *error_flag = 1;
                 return 0;
+            }
+            if (isKeyword(variable_name)) {
+                // Do nothing and i will see opening bracket
+                continue;
             }
             values[values_count++] = map_get(variables, variable_name);
         }
