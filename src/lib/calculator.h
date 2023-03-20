@@ -15,4 +15,6 @@ int find_assignment_sign(char* input);
 
 void remove_comments(char* input);
 
+bool isBlank(char* input);
+
 #endif

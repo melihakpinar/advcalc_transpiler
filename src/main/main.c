@@ -6,7 +6,7 @@
 
 int32_t main() {
     while(1){
-        printf(">");
+        printf("> ");
         char input[300];
         fgets(input, 300, stdin);
         input[strlen(input) - 1] = '\0';

@@ -1,5 +1,7 @@
 #include "calculator.h"
 
+#include "evaluator.h"
+
 void calculator(char* input){
     static hashmap* map;
     if(map == NULL){
@@ -8,31 +10,36 @@ void calculator(char* input){
 
     remove_comments(input);
 
+    if(isBlank(input)){
+        return;
+    }
+
     bool error_flag = false;
-    bool is_assignment_flag = is_assignment(input, &error_flag);
+    bool is_assignment_flag = isAssignment(input, &error_flag);
 
     if(error_flag){
         printf("Error!\n");
         return;
     }
 
-    char* expression = "";
-    char* variable = "";
-    strncpy(expression, input, strlen(input));
+    char expression[300] = "";
+    char variable[300] = "";
 
     if(is_assignment_flag){
         int assignment_index = find_assignment_sign(input);
         strncpy(variable, input, assignment_index);
         strncpy(expression, input + assignment_index + 1, strlen(input) - assignment_index - 1);
     }
+    else{
+        strncpy(expression, input, strlen(input));
+    }
 
-    is_paranthesis_valid(expression, &error_flag);
-    if(error_flag){
+    if(!areBracketsBalanced(expression)){
         printf("Error!\n");
         return;
     }
 
-    int value = 0; // TODO: call evaluator here with expression
+    int value = evaluate(expression, map, &error_flag);
 
     if(is_assignment_flag){
         map_assign(map, variable, value);
@@ -58,4 +65,13 @@ void remove_comments(char* input){
             return;
         }
     }
+}
+
+bool isBlank(char* input){
+    for(int i = 0; i < strlen(input); i++){
+        if(input[i] != ' '){
+            return false;
+        }
+    }
+    return true;
 }
