@@ -40,7 +40,12 @@ void calculator(char* input){
     }
 
     int value = evaluate(expression, map, &error_flag);
-    
+
+    if(error_flag){
+        printf("Error!\n");
+        return;
+    }
+
     if(is_assignment_flag){
         map_assign(map, variable, value);
     }

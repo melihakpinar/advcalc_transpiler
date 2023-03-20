@@ -15,7 +15,7 @@ bool isAssignment(char* str, bool* error_flag){
     }
     if(equals_cnt == 0)
         return false;
-    char variable[300];
+    char variable[300] = "";
     strncpy(variable, str, equal_index);
     if(!isVariable(variable) || isKeyword(variable)){
         *error_flag = true;

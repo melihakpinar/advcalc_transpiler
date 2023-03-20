@@ -53,8 +53,11 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             if (type == 0) {
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ',') {
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
+                    if (expression[j] == ',' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
@@ -63,12 +66,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 first_operand[j - i - 1] = 0;
                 int k = j + 1;
                 char second_operand[256];
+                brackets = 0;
                 for (; expression[k]; k++) {
-                    if (expression[k] == ')') {
+                    if (expression[k] == ')' && brackets == 0) {
                         break;
                     } else {
                         second_operand[k - j - 1] = expression[k];
                     }
+                    if (expression[k] == '(') brackets++;
+                    if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
                 int first_operand_value = evaluate(first_operand, variables, error_flag);
@@ -82,8 +88,11 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             else if (type == 1) {
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ',') {
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
+                    if (expression[j] == ',' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
@@ -92,12 +101,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 first_operand[j - i - 1] = 0;
                 int k = j + 1;
                 char second_operand[256];
+                brackets = 0;
                 for (; expression[k]; k++) {
-                    if (expression[k] == ')') {
+                    if (expression[k] == ')' && brackets == 0) {
                         break;
                     } else {
                         second_operand[k - j - 1] = expression[k];
                     }
+                    if (expression[k] == '(') brackets++;
+                    if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
                 int first_operand_value = evaluate(first_operand, variables, error_flag);
@@ -111,8 +123,11 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             else if (type == 2) {
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ',') {
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
+                    if (expression[j] == ',' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
@@ -121,12 +136,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 first_operand[j - i - 1] = 0;
                 int k = j + 1;
                 char second_operand[256];
+                brackets = 0;
                 for (; expression[k]; k++) {
-                    if (expression[k] == ')') {
+                    if (expression[k] == ')' && brackets == 0) {
                         break;
                     } else {
                         second_operand[k - j - 1] = expression[k];
                     }
+                    if (expression[k] == '(') brackets++;
+                    if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
                 int first_operand_value = evaluate(first_operand, variables, error_flag);
@@ -140,8 +158,11 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             else if (type == 3) {
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ',') {
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
+                    if (expression[j] == ',' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
@@ -150,12 +171,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 first_operand[j - i - 1] = 0;
                 int k = j + 1;
                 char second_operand[256];
+                brackets = 0;
                 for (; expression[k]; k++) {
-                    if (expression[k] == ')') {
+                    if (expression[k] == ')' && brackets == 0) {
                         break;
                     } else {
                         second_operand[k - j - 1] = expression[k];
                     }
+                    if (expression[k] == '(') brackets++;
+                    if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
                 int first_operand_value = evaluate(first_operand, variables, error_flag);
@@ -169,8 +193,11 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             else if (type == 4) {
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ',') {
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
+                    if (expression[j] == ',' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
@@ -179,12 +206,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 first_operand[j - i - 1] = 0;
                 int k = j + 1;
                 char second_operand[256];
+                brackets = 0;
                 for (; expression[k]; k++) {
-                    if (expression[k] == ')') {
+                    if (expression[k] == ')' && brackets == 0) {
                         break;
                     } else {
                         second_operand[k - j - 1] = expression[k];
                     }
+                    if (expression[k] == '(') brackets++;
+                    if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
                 int first_operand_value = evaluate(first_operand, variables, error_flag);
@@ -198,12 +228,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             else if (type == 5) {
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ')') {
+                    if (expression[j] == ')' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
                     }
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
                 }
                 first_operand[j - i - 1] = 0;
                 int first_operand_value = evaluate(first_operand, variables, error_flag);
@@ -216,12 +249,15 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
             else { // No keywords, normal brackets
                 int j = i + 1;
                 char first_operand[256];
+                int brackets = 0;
                 for (; expression[j]; j++) {
-                    if (expression[j] == ')') {
+                    if (expression[j] == ')' && brackets == 0) {
                         break;
                     } else {
                         first_operand[j - i - 1] = expression[j];
                     }
+                    if (expression[j] == '(') brackets++;
+                    if (expression[j] == ')') brackets--;
                 }
                 first_operand[j - i - 1] = 0;
                 values[values_count++] = evaluate(first_operand, variables, error_flag);
