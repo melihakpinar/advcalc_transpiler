@@ -2,7 +2,7 @@
 
 hashmap* map_construct(int size){
     hashmap* new_map = (hashmap*) malloc (sizeof(hashmap));
-    new_map->container = (int*) malloc (size * sizeof(int));
+    new_map->container = (int64_t*) malloc (size * sizeof(int64_t));
     new_map->size = size;
     return new_map;
 }
@@ -17,12 +17,12 @@ int hash(char* string){
     return hash_value;
 }
 
-void map_assign(hashmap* map, char* variable, int value){
+void map_assign(hashmap* map, char* variable, int64_t value){
     int index = hash(variable);
     map->container[index] = value;
 }
 
-int map_get(hashmap* map, char* variable){
+int64_t map_get(hashmap* map, char* variable){
     int index = hash(variable);
     return map->container[index];
 }

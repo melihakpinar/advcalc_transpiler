@@ -1,38 +1,38 @@
 #include "math.h"
 
-int sum(int a, int b){
+int64_t sum(int64_t a, int64_t b){
     return a + b;
 }
 
-int multiple(int a, int b){
+int64_t multiple(int64_t a, int64_t b){
     return a * b;
 }
 
-int substract(int a, int b){
+int64_t substract(int64_t a, int64_t b){
     return a - b;
 }
 
-int band(int a, int b){
+int64_t band(int64_t a, int64_t b){
     return a & b;
 }
 
-int bor(int a, int b){
+int64_t bor(int64_t a, int64_t b){
     return a | b;
 }
 
-int bxor(int a, int b){
+int64_t bxor(int64_t a, int64_t b){
     return a ^ b;
 }
 
-int ls(int a, int i){
+int64_t ls(int64_t a, int64_t i){
     return a << i;
 }
 
-int rs(int a, int i){
+int64_t rs(int64_t a, int64_t i){
     return a >> i;
 }
 
-int lr(int a, int i){
+int64_t lr(int64_t a, int64_t i){
     i %= 64ll;
     while(i--){
         if(a & (1ll << 63)) a = (a << 1) | 1;
@@ -41,7 +41,7 @@ int lr(int a, int i){
     return a;
 }
 
-int rr(int a, int i){
+int64_t rr(int64_t a, int64_t i){
     i %= 64ll;
     while(i--){
         if(a & 1) a = (a >> 1) | (1ll << 63);
@@ -50,6 +50,6 @@ int rr(int a, int i){
     return a;
 }
 
-int bnot(int a){
+int64_t bnot(int64_t a){
     return -1ll ^ a;
 }

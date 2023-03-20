@@ -37,7 +37,7 @@ void calculator(char* input){
         return;
     }
 
-    int value = evaluate(expression, map, &error_flag);
+    int64_t value = evaluate(expression, map, &error_flag);
 
     if(error_flag){
         printf("Error!\n");
@@ -48,7 +48,7 @@ void calculator(char* input){
         map_assign(map, variable, value);
     }
     else{
-        printf("%d\n", value);
+        printf("%ld\n", value);
     }
 }
 

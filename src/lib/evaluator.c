@@ -1,12 +1,12 @@
 #include "evaluator.h"
 
-int evaluate(char* expression, hashmap* variables, bool* error_flag) {
+int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
     if (!isValid(expression)) {
         *error_flag = 1;
         return 0;
     }
     char sign_operators[256] = "";
-    int values[256];
+    int64_t values[256];
     int values_count = 0;
     for (int i = 0; expression[i]; i++) {
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*'|| expression[i] == '&' || expression[i] == '|') {
@@ -74,8 +74,8 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int first_operand_value = evaluate(first_operand, variables, error_flag);
-                int second_operand_value = evaluate(second_operand, variables, error_flag);
+                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
+                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -109,8 +109,8 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int first_operand_value = evaluate(first_operand, variables, error_flag);
-                int second_operand_value = evaluate(second_operand, variables, error_flag);
+                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
+                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -144,8 +144,8 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int first_operand_value = evaluate(first_operand, variables, error_flag);
-                int second_operand_value = evaluate(second_operand, variables, error_flag);
+                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
+                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -179,8 +179,8 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int first_operand_value = evaluate(first_operand, variables, error_flag);
-                int second_operand_value = evaluate(second_operand, variables, error_flag);
+                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
+                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -214,8 +214,8 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int first_operand_value = evaluate(first_operand, variables, error_flag);
-                int second_operand_value = evaluate(second_operand, variables, error_flag);
+                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
+                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -236,7 +236,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[j] == ')') brackets--;
                 }
                 first_operand[j - i - 1] = 0;
-                int first_operand_value = evaluate(first_operand, variables, error_flag);
+                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -303,7 +303,7 @@ int evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 number[k++] = expression[j];
             }
             number[k] = 0;
-            values[values_count++] = atoi(number);
+            values[values_count++] = atoll(number);
         }
     }
     if (values_count - 1 != (int)strlen(sign_operators)) {
