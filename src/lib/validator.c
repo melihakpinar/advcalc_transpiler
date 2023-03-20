@@ -35,7 +35,7 @@ bool isVariable(char* str){
             return false;
     }
     *(str + r + 1) = '\0';
-    char** operations = {"xor", "ls", "rs", "lr", "rr", "not"};
+    char* operations[6] = {"xor", "ls", "rs", "lr", "rr", "not"};
     for(int i = 0; i < 6; i++){
         if(isEqual(str + l, operations[i]))
             return false;
