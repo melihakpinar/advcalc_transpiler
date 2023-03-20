@@ -1,6 +1,9 @@
 #ifndef HASHMAP_H
 #define HASHMAP_H
 
+#include <stdlib.h>
+#include <string.h>
+
 #define P 61
 #define N 1000003
 
