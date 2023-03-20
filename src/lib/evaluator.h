@@ -1,19 +1,14 @@
-#ifndef VALIDATOR_H
-#define VALIDATOR_H
-
+#include "hashmap.h"
 #include <stdbool.h>
-#include <ctype.h>
-#include <string.h>
 
-bool isAssignment(char* str, bool* error_flag);
+#ifndef EVALUATOR_H
+#define EVALUATOR_H
 
-bool isVariable(char* str);
-
-bool isKeyword(char* str);
-
-bool areBracketsBalanced(char* str);
-
-bool isEqual(char* str1, char* str2);
+/*
+* @param: expression: char
+* @return: bool
+*/
+bool isBracketBalanced(char* expression);
 
 /*
 * @param: expression: char
@@ -32,5 +27,11 @@ bool doesExpressionStartOrEndWithOperator(char* expression);
 * @return: bool
 */
 bool isValid(char* expression);
+
+/*
+* @param: str: char*
+* @return: int
+*/
+int evaluate(char* expression, hashmap* variables, bool* error_flag);
 
 #endif
