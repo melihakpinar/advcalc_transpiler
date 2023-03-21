@@ -1,6 +1,6 @@
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Wpedantic -std=c99 -lm
+CFLAGS = -Wall -Wextra -Wpedantic -std=c11 -lm
 
 SRC = $(wildcard ./src/*/*.c)
 EXEC = advcalc
@@ -12,4 +12,3 @@ all:
 
 clean:
 	@ if [ -f $(EXEC) ]; then rm $(EXEC); fi
-	
