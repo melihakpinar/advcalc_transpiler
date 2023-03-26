@@ -34,20 +34,12 @@ int64_t rs(int64_t a, int64_t i){
 
 int64_t lr(int64_t a, int64_t i){
     i %= 64ll;
-    while(i--){
-        if(a & (1ll << 63)) a = (a << 1) | 1;
-        else a = a << 1;
-    }
-    return a;
+    return (a << i) | (a >> (64ll - i));
 }
 
 int64_t rr(int64_t a, int64_t i){
     i %= 64ll;
-    while(i--){
-        if(a & 1) a = (a >> 1) | (1ll << 63);
-        else a = a >> 1;
-    }
-    return a;
+    return (a >> i) | (a << (64ll - i));
 }
 
 int64_t bnot(int64_t a){
