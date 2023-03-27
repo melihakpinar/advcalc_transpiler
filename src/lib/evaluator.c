@@ -12,7 +12,7 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*'|| expression[i] == '&' || expression[i] == '|') {
             sign_operators[strlen(sign_operators)] = expression[i];
         }
-        if (expression[i] == '(') {
+        else if (expression[i] == '(') {
             int keyword_index = i - 1; // variable to find the keyword
             int type = -1; // 0: xor, 1: ls, 2: rs, 3: lr, 4: rr, 5: not
             for (; keyword_index >= 2; keyword_index--) {
@@ -264,7 +264,7 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 i = j;
             }
         }
-        if (isalpha(expression[i])) {
+        else if (isalpha(expression[i])) {
             if (expression[i + 1] && isalpha(expression[i + 1])) continue;
             char variable_name[256];
             int j = i;
@@ -289,7 +289,7 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
             }
             values[values_count++] = map_get(variables, variable_name);
         }
-        if (isdigit(expression[i])) {
+        else if (isdigit(expression[i])) {
             if (expression[i + 1] && isdigit(expression[i + 1])) continue;
             int j = i;
             for (; j >= 0; j--) {
@@ -304,6 +304,10 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
             }
             number[k] = 0;
             values[values_count++] = atoll(number);
+        }
+        else if(expression[i] != ' '){
+            *error_flag = true;
+            return 0;
         }
     }
     if (values_count - 1 != (int)strlen(sign_operators)) {
