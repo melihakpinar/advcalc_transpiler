@@ -8,6 +8,8 @@ int32_t main() {
         printf("> ");
         char input[300];
         fgets(input, 300, stdin);
+        if(strlen(input) == 0)
+            break;
         input[strlen(input) - 1] = '\0';
         calculator(input);
     }
