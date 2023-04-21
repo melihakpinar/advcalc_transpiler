@@ -9,7 +9,7 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
     int64_t values[256];
     int values_count = 0;
     for (int i = 0; expression[i]; i++) {
-        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*'|| expression[i] == '&' || expression[i] == '|') {
+        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/' || expression[i] == '&' || expression[i] == '|') {
             sign_operators[strlen(sign_operators)] = expression[i];
         }
         else if (expression[i] == '(') {
@@ -318,6 +318,18 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
     for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '*') {
             values[i] = multiple(values[i], values[i + 1]);
+            for (int j = i + 1; j < values_count - 1; j++) {
+                values[j] = values[j + 1];
+            }
+            values_count--;
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
+                sign_operators[j] = sign_operators[j + 1];
+            }
+            sign_operators[strlen(sign_operators) - 1] = 0;
+            i--;
+        }
+        if (sign_operators[i] == '/') {
+            values[i] = divide(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
