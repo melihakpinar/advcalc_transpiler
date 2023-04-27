@@ -6,8 +6,6 @@ void calculator(char* input){
         map = map_construct(N);
     }
 
-    remove_comments(input);
-
     if(isBlank(input)){
         return;
     }
@@ -59,15 +57,6 @@ int find_assignment_sign(char* input){
         }
     }
     return -1;
-}
-
-void remove_comments(char* input){
-    for(int i = 0; i < (int)strlen(input); i++){
-        if(input[i] == '%'){
-            input[i] = '\0';
-            return;
-        }
-    }
 }
 
 bool isBlank(char* input){

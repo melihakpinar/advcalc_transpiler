@@ -26,12 +26,6 @@ void calculator(char* input);
 int find_assignment_sign(char* input);
 
 /*
-* This function is used to remove the comments from the input string.
-* @param input: The string to be evaluated.
-*/
-void remove_comments(char* input);
-
-/*
 * This function is used to check if the input string is blank.
 * @param input: The string to be evaluated.
 * @return: True if the string is blank, false otherwise.
