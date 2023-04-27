@@ -27,6 +27,13 @@ int64_t substract(int64_t a, int64_t b);
 /*
 * @param: a: int64_t
 * @param: b: int64_t
+* @return: division of a and b
+*/
+int64_t divide(int64_t a, int64_t b);
+
+/*
+* @param: a: int64_t
+* @param: b: int64_t
 * @return: binary and of a and b
 */
 int64_t band(int64_t a, int64_t b);
