@@ -314,7 +314,7 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
         *error_flag = 1;
         return 0;
     }
-    // Do all * operations
+    // Do all *, /, % operations
     for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '*') {
             values[i] = multiple(values[i], values[i + 1]);
@@ -334,6 +334,22 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 return 0;
             }
             values[i] = divide(values[i], values[i + 1]);
+            for (int j = i + 1; j < values_count - 1; j++) {
+                values[j] = values[j + 1];
+            }
+            values_count--;
+            for (int j = i; j < (int)strlen(sign_operators) - 1; j++) {
+                sign_operators[j] = sign_operators[j + 1];
+            }
+            sign_operators[strlen(sign_operators) - 1] = 0;
+            i--;
+        }
+        if (sign_operators[i] == '%') {
+            if (values[i + 1] == 0) {
+                *error_flag = 1;
+                return 0;
+            }
+            values[i] = mod(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
