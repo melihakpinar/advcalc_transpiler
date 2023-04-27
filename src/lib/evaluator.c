@@ -349,7 +349,7 @@ int64_t evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 *error_flag = 1;
                 return 0;
             }
-            values[i] = mod(values[i], values[i + 1]);
+            values[i] = modulo(values[i], values[i + 1]);
             for (int j = i + 1; j < values_count - 1; j++) {
                 values[j] = values[j + 1];
             }
