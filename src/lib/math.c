@@ -16,6 +16,10 @@ int64_t divide(int64_t a, int64_t b){
     return a / b;
 }
 
+int64_t modulo(int64_t a, int64_t b){
+    return a % b;
+}
+
 int64_t band(int64_t a, int64_t b){
     return a & b;
 }
