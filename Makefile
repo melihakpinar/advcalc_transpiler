@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic -std=c11 -lm
 
 SRC = $(wildcard ./src/*/*.c)
-EXEC = advcalc
+EXEC = advcalc2ir
 INC = -I./src
 
 all:
