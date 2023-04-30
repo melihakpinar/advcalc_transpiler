@@ -1,5 +1,6 @@
 #include "hashmap.h"
 
+
 hashmap* map_construct(int size){
     hashmap* new_map = (hashmap*) malloc (sizeof(hashmap));
     new_map->container = (int64_t*) malloc (size * sizeof(int64_t));

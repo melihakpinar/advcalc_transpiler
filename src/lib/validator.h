@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <string.h>
 
+
 /*
 * This function is used to check if the expression is an assignment.
 * @param: str: char*

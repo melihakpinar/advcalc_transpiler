@@ -8,6 +8,7 @@
 #define P 61
 #define N 1000003
 
+
 /*
 * This struct is used to store the variables.
 */

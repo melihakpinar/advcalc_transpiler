@@ -1,5 +1,5 @@
 #include "evaluator.h"
-#include <stdio.h>
+
 
 char* value_to_string(int value, bool is_address) {
     char first_operand[256];
