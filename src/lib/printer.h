@@ -60,17 +60,5 @@ void operation(int address, char* left, char* right, char* op);
 */
 void load(int address, char* variable);
 
-/*
-* This function generates the name of the output file.
-* @param filename The name of the input file.
-* @param output_filename The name of the output file.
-*/
-void generate_output_filename(char* filename, char* output_filename);
-
-/*
-* This function deletes the output file.
-* @param filename The name of the input file.
-*/
-void delete_output_file(char* filename);
 
 #endif

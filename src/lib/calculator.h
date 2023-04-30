@@ -17,9 +17,9 @@
 * It takes a line from input and transform it into LLVM IR code
 * @param: line: The string to be evaluated.
 * @param: line_number: Index of the line.
-* @param: output_filename: The name of the output file.
+* @return: True if the line was evaluated successfully, false otherwise.
 */
-void calculator(char* line, int line_number, char* output_filename);
+bool calculator(char* line, int line_number);
 
 /*
 * This function is used to find the assignment sign in the input string.

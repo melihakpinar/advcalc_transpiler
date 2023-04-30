@@ -1,7 +1,7 @@
 #include "calculator.h"
 
 
-void calculator(char* line, int line_number, char* output_filename){
+bool calculator(char* line, int line_number){
     static int ADDRESS = 1;
     static hashmap* map;
     if(map == NULL){
@@ -9,7 +9,7 @@ void calculator(char* line, int line_number, char* output_filename){
     }
 
     if(isBlank(line)){
-        return;
+        return 0;
     }
 
     bool error_flag = false;
@@ -17,9 +17,7 @@ void calculator(char* line, int line_number, char* output_filename){
 
     if(error_flag){
         printf("Error on line %d!\n", line_number);
-        close_file();
-        delete_output_file(output_filename);
-        exit(0);
+        return 1;
     }
 
     char expression[300] = "";
@@ -36,18 +34,14 @@ void calculator(char* line, int line_number, char* output_filename){
 
     if(!areBracketsBalanced(expression)){
         printf("Error on line %d!\n", line_number);
-        close_file();
-        delete_output_file(output_filename);
-        exit(0);
+        return 1;
     }
 
     char* value = evaluate(expression, map, &error_flag, &ADDRESS);
 
     if(error_flag){
         printf("Error on line %d!\n", line_number);
-        close_file();
-        delete_output_file(output_filename);
-        exit(0);
+        return 1;
     }
 
     if(is_assignment_flag){
@@ -61,6 +55,7 @@ void calculator(char* line, int line_number, char* output_filename){
         print(value);
         ADDRESS++;
     }
+    return 0;
 }
 
 int find_assignment_sign(char* line){
