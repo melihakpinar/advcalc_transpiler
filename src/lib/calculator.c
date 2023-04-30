@@ -1,7 +1,7 @@
 #include "calculator.h"
 
 
-void calculator(char* line, int line_number){
+void calculator(char* line, int line_number, char* output_filename){
     static hashmap* map;
     if(map == NULL){
         map = map_construct(N);
@@ -16,7 +16,9 @@ void calculator(char* line, int line_number){
 
     if(error_flag){
         printf("Error on line %d!\n", line_number);
-        return;
+        close_file();
+        delete_output_file(output_filename);
+        exit(0);
     }
 
     char expression[300] = "";
@@ -33,14 +35,18 @@ void calculator(char* line, int line_number){
 
     if(!areBracketsBalanced(expression)){
         printf("Error on line %d!\n", line_number);
-        return;
+        close_file();
+        delete_output_file(output_filename);
+        exit(0);
     }
 
     char* value = evaluate(expression, map, &error_flag);
 
     if(error_flag){
         printf("Error on line %d!\n", line_number);
-        return;
+        close_file();
+        delete_output_file(output_filename);
+        exit(0);
     }
 
     if(is_assignment_flag){

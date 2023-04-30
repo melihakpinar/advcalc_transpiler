@@ -18,7 +18,7 @@
 * It also handles the assignment of variables.
 * @param input: The string to be evaluated.
 */
-void calculator(char* line, int line_number);
+void calculator(char* line, int line_number, char* output_filename);
 
 /*
 * This function is used to find the assignment sign in the input string.

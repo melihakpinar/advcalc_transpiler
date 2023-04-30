@@ -2,10 +2,8 @@
 #define PRINTER_H
 
 #include <stdio.h>
+#include <string.h>
 
-
-int ADDRESS = 1;
-FILE *output_file;
 
 void open_file(char* filename);
 
@@ -24,5 +22,9 @@ void print(char* address);
 void operation(int address, char* left, char* right, char* op);
 
 void load(int address, char* variable);
+
+void generate_output_filename(char* filename, char* output_filename);
+
+void delete_output_file(char* filename);
 
 #endif
