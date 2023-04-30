@@ -22,7 +22,8 @@ int main(int argc, char** argv) {
     char input[300];
     int line_number = 1;
     while(fgets(input, 300, input_file) != NULL){
-        input[strlen(input) - 1] = '\0';
+        if(input[strlen(input) - 1] == '\n')
+            input[strlen(input) - 1] = '\0';
         calculator(input, line_number++, output_filename);
     }
     close_file();
