@@ -8,12 +8,12 @@ void open_file(char* filename){
     write_begin();
 }
 
-void close_file(){
+void close_file(void){
     write_end();
     fclose(output_file);
 }
 
-void write_begin(){
+void write_begin(void){
     fprintf(output_file, "; ModuleID = ’advcalc2ir’\n");
     fprintf(output_file, "declare i32 @printf(i8*, ...)\n");
     fprintf(output_file, "@print.str = constant [4 x i8] c\"%%d\\0A\\00\"\n");
@@ -21,7 +21,7 @@ void write_begin(){
     fprintf(output_file, "define i32 @main() {\n");
 }
 
-void write_end(){
+void write_end(void){
     fprintf(output_file, "\tret i32 0\n");
     fprintf(output_file, "}\n");
 }

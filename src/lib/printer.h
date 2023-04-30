@@ -13,17 +13,17 @@ void open_file(char* filename);
 /*
 * This function writes end of the code and closes the file that was opened with the open_file function.
 */
-void close_file();
+void close_file(void);
 
 /*
 * This function writes the begining of the LLVM IR code.
 */
-void write_begin();
+void write_begin(void);
 
 /*
 * This function writes the end of the LLVM IR code.
 */
-void write_end();
+void write_end(void);
 
 /*
 * This function writes the code for allocating a variable.
@@ -59,6 +59,5 @@ void operation(int address, char* left, char* right, char* op);
 * @param variable The name of the variable to be loaded.
 */
 void load(int address, char* variable);
-
 
 #endif
