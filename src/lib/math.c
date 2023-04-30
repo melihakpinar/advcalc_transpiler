@@ -91,3 +91,8 @@ int rr(char* a, char* b){
 int bnot(char* a){
     return bxor(a, "-1");
 }
+
+int address_of(char *variable){
+    load(ADDRESS, variable);
+    return ADDRESS++;
+}

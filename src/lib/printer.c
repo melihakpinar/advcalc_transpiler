@@ -37,3 +37,7 @@ void print(char* value){
 void operation(int address, char* left, char* right, char* op){
     fprintf(output_file, "%%%d = %s i32 %%%s, %%%s\n", address, op, left, right);
 }
+
+void load(int address, char *variable){
+    fprintf(output_file, "%%%d = load i32, i32* %%%s\n", address, variable);
+}

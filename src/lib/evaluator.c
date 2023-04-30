@@ -1,16 +1,24 @@
 #include "evaluator.h"
 
 
-char* value_to_string(int64_t value, bool is_address) {
+char* value_to_string(int value, bool is_address) {
     char first_operand[256];
     if (is_address) {
-        sprintf(first_operand, "%%%ld", value);
+        sprintf(first_operand, "%%%d", value);
     } else {
-        sprintf(first_operand, "%ld", value);
+        sprintf(first_operand, "%d", value);
     }
     char* result = (char*)malloc(sizeof(char) * (strlen(first_operand) + 1));
     strcpy(result, first_operand);
     return result;
+}
+
+int string_to_value(char* string) {
+    if (string[0] == '%') {
+        return atoi(string + 1);
+    } else {
+        return atoi(string);
+    }
 }
 
 char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
@@ -124,8 +132,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
-                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -160,8 +168,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
-                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -196,8 +204,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
-                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -232,8 +240,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
-                int64_t second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -255,7 +263,7 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[j] == ')') brackets--;
                 }
                 first_operand[j - i - 1] = 0;
-                int64_t first_operand_value = evaluate(first_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -277,8 +285,10 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[j] == ')') brackets--;
                 }
                 first_operand[j - i - 1] = 0;
-                is_address[values_count] = 1;
-                values[values_count++] = evaluate(first_operand, variables, error_flag);
+                char result[256];
+                strncpy(result, evaluate(first_operand, variables, error_flag), 256);
+                is_address[values_count] = (result[0] == '%' ? 1 : 0);
+                values[values_count++] = string_to_value(result);
                 if (*error_flag == 1) {
                     return 0;
                 }
@@ -309,7 +319,11 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 continue;
             }
             is_address[values_count] = 1;
-            values[values_count++] = map_get(variables, variable_name);
+            if(is_defined(variables, variable_name) == 0){
+                *error_flag = 1;
+                return 0;
+            }
+            values[values_count++] = address_of(variable_name);
         }
         else if (isdigit(expression[i])) {
             if (expression[i + 1] && isdigit(expression[i + 1])) continue;

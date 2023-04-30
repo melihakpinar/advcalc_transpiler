@@ -94,4 +94,6 @@ int rr(char* a, char* b);
 */
 int bnot(char* a);
 
+int address_of(char* variable);
+
 #endif

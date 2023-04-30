@@ -9,6 +9,7 @@
 #include "hashmap.h"
 #include "validator.h"
 #include "evaluator.h"
+#include "printer.h"
 
 
 /*
@@ -17,7 +18,7 @@
 * It also handles the assignment of variables.
 * @param input: The string to be evaluated.
 */
-void calculator(char* input);
+void calculator(char* line, int line_number);
 
 /*
 * This function is used to find the assignment sign in the input string.

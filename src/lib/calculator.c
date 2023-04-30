@@ -1,21 +1,21 @@
 #include "calculator.h"
 
 
-void calculator(char* input){
+void calculator(char* line, int line_number){
     static hashmap* map;
     if(map == NULL){
         map = map_construct(N);
     }
 
-    if(isBlank(input)){
+    if(isBlank(line)){
         return;
     }
 
     bool error_flag = false;
-    bool is_assignment_flag = isAssignment(input, &error_flag);
+    bool is_assignment_flag = isAssignment(line, &error_flag);
 
     if(error_flag){
-        printf("Error!\n");
+        printf("Error on line %d!\n", line_number);
         return;
     }
 
@@ -23,58 +23,58 @@ void calculator(char* input){
     char variable[300] = "";
 
     if(is_assignment_flag){
-        int assignment_index = find_assignment_sign(input);
-        copyVariable(variable, input, assignment_index);
-        strncpy(expression, input + assignment_index + 1, strlen(input) - assignment_index - 1);
+        int assignment_index = find_assignment_sign(line);
+        copyVariable(variable, line, assignment_index);
+        strncpy(expression, line + assignment_index + 1, strlen(line) - assignment_index - 1);
     }
     else{
-        strncpy(expression, input, strlen(input));
+        strncpy(expression, line, strlen(line));
     }
 
     if(!areBracketsBalanced(expression)){
-        printf("Error!\n");
+        printf("Error on line %d!\n", line_number);
         return;
     }
 
-    int64_t value = evaluate(expression, map, &error_flag);
+    char* value = evaluate(expression, map, &error_flag);
 
     if(error_flag){
-        printf("Error!\n");
+        printf("Error on line %d!\n", line_number);
         return;
     }
 
     if(is_assignment_flag){
-        map_assign(map, variable, value);
+        assign(variable, value);
     }
     else{
-        printf("%ld\n", value);
+        print(value);
     }
 }
 
-int find_assignment_sign(char* input){
-    for(int i = 0; i < (int)strlen(input); i++){
-        if(input[i] == '='){
+int find_assignment_sign(char* line){
+    for(int i = 0; i < (int)strlen(line); i++){
+        if(line[i] == '='){
             return i;
         }
     }
     return -1;
 }
 
-bool isBlank(char* input){
-    for(int i = 0; i < (int)strlen(input); i++){
-        if(input[i] != ' '){
+bool isBlank(char* line){
+    for(int i = 0; i < (int)strlen(line); i++){
+        if(line[i] != ' '){
             return false;
         }
     }
     return true;
 }
 
-void copyVariable(char* variable, char* input, int size){
+void copyVariable(char* variable, char* line, int size){
     int i = 0, j = 0;
-    while(input[i] == ' '){
+    while(line[i] == ' '){
         i++;
     }
-    for(; i < size && input[i] && input[i] != ' '; i++){
-        variable[j++] = input[i];
+    for(; i < size && line[i] && line[i] != ' '; i++){
+        variable[j++] = line[i];
     }
 }
