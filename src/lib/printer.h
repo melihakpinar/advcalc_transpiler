@@ -21,4 +21,6 @@ void print(char* address);
 
 void operation(int address, char* left, char* right, char* op);
 
+void load(int address, char* variable);
+
 #endif
