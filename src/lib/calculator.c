@@ -18,7 +18,7 @@ void calculator(char* line, int line_number, char* output_filename){
         printf("Error on line %d!\n", line_number);
         close_file();
         delete_output_file(output_filename);
-        return;
+        exit(0);
     }
 
     char expression[300] = "";
@@ -37,7 +37,7 @@ void calculator(char* line, int line_number, char* output_filename){
         printf("Error on line %d!\n", line_number);
         close_file();
         delete_output_file(output_filename);
-        return;
+        exit(0);
     }
 
     char* value = evaluate(expression, map, &error_flag);
@@ -46,7 +46,7 @@ void calculator(char* line, int line_number, char* output_filename){
         printf("Error on line %d!\n", line_number);
         close_file();
         delete_output_file(output_filename);
-        return;
+        exit(0);
     }
 
     if(is_assignment_flag){
