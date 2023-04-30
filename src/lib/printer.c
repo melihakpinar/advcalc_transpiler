@@ -41,3 +41,18 @@ void operation(int address, char* left, char* right, char* op){
 void load(int address, char *variable){
     fprintf(output_file, "%%%d = load i32, i32* %%%s\n", address, variable);
 }
+
+void generate_output_filename(char* filename, char* output_filename){
+    int i = strlen(filename) - 1;
+    while(filename[i] != '.'){
+        i--;
+    }
+    strncpy(output_filename, filename, i);
+    strncpy(output_filename + i, ".ll\0", 4);
+}
+
+void delete_output_file(char* filename){
+    char output_filename[300];
+    generate_output_filename(filename, output_filename);
+    remove(output_filename);
+}
