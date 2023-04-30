@@ -1,6 +1,8 @@
 #include "printer.h"
 
 
+FILE *output_file;
+
 void open_file(char* filename){
     output_file = fopen(filename, "w");
     write_begin();

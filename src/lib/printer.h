@@ -5,9 +5,6 @@
 #include <string.h>
 
 
-int ADDRESS = 1;
-FILE *output_file;
-
 void open_file(char* filename);
 
 void close_file();
