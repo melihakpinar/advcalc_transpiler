@@ -15,7 +15,8 @@
 * @param: expression: The expression to be evaluated.
 * @param: variables: The hashmap to store the variables.
 * @param: error_flag: The flag to check if there is an error.
-* @return: The result of the expression.
+* @param: address: Address counter for the LLVM IR code.
+* @return: The register that stores the result of the expression.
 */
 char* evaluate(char* expression, hashmap* variables, bool* error_flag, int* address);
 

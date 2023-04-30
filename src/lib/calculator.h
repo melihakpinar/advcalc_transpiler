@@ -14,9 +14,10 @@
 
 /*
 * This function is the main function of the calculator.
-* It takes a string as input and evaluates it.
-* It also handles the assignment of variables.
-* @param input: The string to be evaluated.
+* It takes a line from input and transform it into LLVM IR code
+* @param: line: The string to be evaluated.
+* @param: line_number: Index of the line.
+* @param: output_filename: The name of the output file.
 */
 void calculator(char* line, int line_number, char* output_filename);
 

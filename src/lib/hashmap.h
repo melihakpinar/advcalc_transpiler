@@ -10,7 +10,7 @@
 
 
 /*
-* This struct is used to store the variables.
+* This struct is used to check if a variable is defined.
 */
 typedef struct Hashmap{
     int64_t* container;
@@ -32,18 +32,17 @@ hashmap* map_construct(int size);
 int hash(char* string);
 
 /*
-* This function is used to assign a value to a variable.
+* This function is used to insert a variable into the hashmap.
 * @param map: The hashmap to store the variables.
 * @param variable: The variable name.
-* @param value: The value to be assigned.
 */
 void define_variable(hashmap* map, char* variable);
 
 /*
-* This function is used to get the value of a variable.
+* This function is used to check if a variable is defined.
 * @param map: The hashmap to store the variables.
 * @param variable: The variable name.
-* @return: The value of the variable.
+* @return: 1 if the variable is defined, 0 otherwise.
 */
 int is_defined(hashmap* map, char* variable);
 
