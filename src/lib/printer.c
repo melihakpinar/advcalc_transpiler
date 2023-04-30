@@ -3,9 +3,11 @@
 
 void open_file(char* filename){
     output_file = fopen(filename, "w");
+    write_begin();
 }
 
 void close_file(){
+    write_end();
     fclose(output_file);
 }
 
