@@ -22,28 +22,28 @@ void write_begin(){
 }
 
 void write_end(){
-    fprintf(output_file, "ret i32 0\n");
+    fprintf(output_file, "\tret i32 0\n");
     fprintf(output_file, "}\n");
 }
 
 void allocate(char* variable){
-    fprintf(output_file, "%%%s = alloca i32\n", variable);
+    fprintf(output_file, "\t%%%s = alloca i32\n", variable);
 }
 
 void assign(char* variable, char* value){
-    fprintf(output_file, "store i32 %s, i32* %%%s\n", value, variable);
+    fprintf(output_file, "\tstore i32 %s, i32* %%%s\n", value, variable);
 }
 
 void print(char* value){
-    fprintf(output_file, "call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %s)\n", value);
+    fprintf(output_file, "\tcall i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %s)\n", value);
 }
 
 void operation(int address, char* left, char* right, char* op){
-    fprintf(output_file, "%%%d = %s i32 %%%s, %%%s\n", address, op, left, right);
+    fprintf(output_file, "\t%%%d = %s i32 %s, %s\n", address, op, left, right);
 }
 
 void load(int address, char *variable){
-    fprintf(output_file, "%%%d = load i32, i32* %%%s\n", address, variable);
+    fprintf(output_file, "\t%%%d = load i32, i32* %%%s\n", address, variable);
 }
 
 void generate_output_filename(char* filename, char* output_filename){

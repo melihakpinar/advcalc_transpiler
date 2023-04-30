@@ -2,6 +2,7 @@
 
 
 void calculator(char* line, int line_number, char* output_filename){
+    static int ADDRESS = 1;
     static hashmap* map;
     if(map == NULL){
         map = map_construct(N);
@@ -15,7 +16,7 @@ void calculator(char* line, int line_number, char* output_filename){
     bool is_assignment_flag = isAssignment(line, &error_flag);
 
     if(error_flag){
-        printf("Error 1 on line %d!\n", line_number);
+        printf("Error on line %d!\n", line_number);
         close_file();
         delete_output_file(output_filename);
         exit(0);
@@ -34,16 +35,16 @@ void calculator(char* line, int line_number, char* output_filename){
     }
 
     if(!areBracketsBalanced(expression)){
-        printf("Error 2 on line %d!\n", line_number);
+        printf("Error on line %d!\n", line_number);
         close_file();
         delete_output_file(output_filename);
         exit(0);
     }
 
-    char* value = evaluate(expression, map, &error_flag);
+    char* value = evaluate(expression, map, &error_flag, &ADDRESS);
 
     if(error_flag){
-        printf("Error 3 on line %d!\n", line_number);
+        printf("Error on line %d!\n", line_number);
         close_file();
         delete_output_file(output_filename);
         exit(0);
@@ -58,6 +59,7 @@ void calculator(char* line, int line_number, char* output_filename){
     }
     else{
         print(value);
+        ADDRESS++;
     }
 }
 

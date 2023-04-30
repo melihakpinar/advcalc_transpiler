@@ -21,8 +21,7 @@ int string_to_value(char* string) {
     }
 }
 
-char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
-    static int ADDRESS = 1;
+char* evaluate(char* expression, hashmap* variables, bool* error_flag, int* address) {
     if (!isValid(expression)) {
         *error_flag = 1;
         return 0;
@@ -32,7 +31,7 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
     int64_t values[256];
     int values_count = 0;
     for (int i = 0; expression[i]; i++) {
-        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/' || expression[i] == '&' || expression[i] == '|') {
+        if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/' || expression[i] == '&' || expression[i] == '|' || expression[i] == '%') {
             sign_operators[strlen(sign_operators)] = expression[i];
         }
         else if (expression[i] == '(') {
@@ -97,14 +96,14 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                char* first_operand_value = evaluate(first_operand, variables, error_flag);
-                char* second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag, address);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag, address);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = k;
                 is_address[values_count] = 1;
-                values[values_count++] = bxor(first_operand_value, second_operand_value, &ADDRESS);
+                values[values_count++] = bxor(first_operand_value, second_operand_value, address);
             }
             else if (type == 1) {
                 int j = i + 1;
@@ -133,14 +132,14 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                char* first_operand_value = evaluate(first_operand, variables, error_flag);
-                char* second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag, address);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag, address);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = k;
                 is_address[values_count] = 1;
-                values[values_count++] = ls(first_operand_value, second_operand_value, &ADDRESS);
+                values[values_count++] = ls(first_operand_value, second_operand_value, address);
             }
             else if (type == 2) {
                 int j = i + 1;
@@ -169,14 +168,14 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                char* first_operand_value = evaluate(first_operand, variables, error_flag);
-                char* second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag, address);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag, address);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = k;
                 is_address[values_count] = 1;
-                values[values_count++] = rs(first_operand_value, second_operand_value, &ADDRESS);
+                values[values_count++] = rs(first_operand_value, second_operand_value, address);
             }
             else if (type == 3) {
                 int j = i + 1;
@@ -205,14 +204,14 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                char* first_operand_value = evaluate(first_operand, variables, error_flag);
-                char* second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag, address);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag, address);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = k;
                 is_address[values_count] = 1;
-                values[values_count++] = lr(first_operand_value, second_operand_value, &ADDRESS);
+                values[values_count++] = lr(first_operand_value, second_operand_value, address);
             }
             else if (type == 4) {
                 int j = i + 1;
@@ -241,14 +240,14 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[k] == ')') brackets--;
                 }
                 second_operand[k - j - 1] = 0;
-                char* first_operand_value = evaluate(first_operand, variables, error_flag);
-                char* second_operand_value = evaluate(second_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag, address);
+                char* second_operand_value = evaluate(second_operand, variables, error_flag, address);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = k;
                 is_address[values_count] = 1;
-                values[values_count++] = rr(first_operand_value, second_operand_value, &ADDRESS);
+                values[values_count++] = rr(first_operand_value, second_operand_value, address);
             }
             else if (type == 5) {
                 int j = i + 1;
@@ -264,13 +263,13 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                     if (expression[j] == ')') brackets--;
                 }
                 first_operand[j - i - 1] = 0;
-                char* first_operand_value = evaluate(first_operand, variables, error_flag);
+                char* first_operand_value = evaluate(first_operand, variables, error_flag, address);
                 if (*error_flag == 1) {
                     return 0;
                 }
                 i = j;
                 is_address[values_count] = 1;
-                values[values_count++] = bnot(first_operand_value, &ADDRESS);
+                values[values_count++] = bnot(first_operand_value, address);
             }
             else { // No keywords, normal brackets
                 int j = i + 1;
@@ -287,7 +286,7 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 }
                 first_operand[j - i - 1] = 0;
                 char result[256];
-                strncpy(result, evaluate(first_operand, variables, error_flag), 256);
+                strncpy(result, evaluate(first_operand, variables, error_flag, address), 256);
                 is_address[values_count] = (result[0] == '%' ? 1 : 0);
                 values[values_count++] = string_to_value(result);
                 if (*error_flag == 1) {
@@ -324,7 +323,7 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
                 *error_flag = 1;
                 return 0;
             }
-            values[values_count++] = address_of(variable_name, &ADDRESS);
+            values[values_count++] = address_of(variable_name, address);
         }
         else if (isdigit(expression[i])) {
             if (expression[i + 1] && isdigit(expression[i + 1])) continue;
@@ -341,7 +340,7 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
             }
             number[k] = 0;
             is_address[values_count] = 0;
-            values[values_count++] = atoll(number);
+            values[values_count++] = atoi(number);
         }
         else if(expression[i] != ' '){
             *error_flag = true;
@@ -355,8 +354,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
     // Do all *, /, % operations
     for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '*') {
+            values[i] = multiple(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = multiple(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];
@@ -369,8 +368,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
             i--;
         }
         if (sign_operators[i] == '/') {
+            values[i] = divide(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = divide(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];
@@ -383,8 +382,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
             i--;
         }
         if (sign_operators[i] == '%') {
+            values[i] = modulo(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = modulo(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];
@@ -400,8 +399,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
     // Do all + and - operations
     for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '+') {
+            values[i] = sum(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = sum(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];
@@ -414,8 +413,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
             i--;
         }
         else if (sign_operators[i] == '-') {
+            values[i] = substract(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = substract(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];
@@ -431,8 +430,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
     // Do all & operations
     for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '&') {
+            values[i] = band(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = band(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];
@@ -448,8 +447,8 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag) {
     // Do all | operations
     for (int i = 0; i < (int)strlen(sign_operators); i++) {
         if (sign_operators[i] == '|') {
+            values[i] = bor(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), address);
             is_address[i] = 1;
-            values[i] = bor(value_to_string(values[i], is_address[i]), value_to_string(values[i + 1], is_address[i + 1]), &ADDRESS);
             for (int j = i + 1; j < values_count - 1; j++) {
                 is_address[j] = is_address[j + 1];
                 values[j] = values[j + 1];

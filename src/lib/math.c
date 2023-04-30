@@ -17,7 +17,7 @@ int substract(char* a, char* b, int* address){
 }
 
 int divide(char* a, char* b, int* address){
-    operation((*address), a, b, "adiv");
+    operation((*address), a, b, "sdiv");
     return (*address)++;
 }
 
