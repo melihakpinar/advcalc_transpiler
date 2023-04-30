@@ -36,7 +36,7 @@ int hash(char* string);
 * @param variable: The variable name.
 * @param value: The value to be assigned.
 */
-void map_assign(hashmap* map, char* variable, int64_t value);
+void define_variable(hashmap* map, char* variable);
 
 /*
 * This function is used to get the value of a variable.
@@ -44,6 +44,6 @@ void map_assign(hashmap* map, char* variable, int64_t value);
 * @param variable: The variable name.
 * @return: The value of the variable.
 */
-int64_t map_get(hashmap* map, char* variable);
+int is_defined(hashmap* map, char* variable);
 
 #endif

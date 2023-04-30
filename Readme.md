@@ -10,5 +10,6 @@ Run the following command in the terminal:
 
 ```bash
 make
-./advcalc
+./advcalc2ir <file_name>.adv
+lli <file_name>.ll
 ```

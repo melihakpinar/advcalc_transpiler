@@ -17,12 +17,12 @@ int hash(char* string){
     return hash_value;
 }
 
-void map_assign(hashmap* map, char* variable, int64_t value){
+void define_variable(hashmap* map, char* variable){
     int index = hash(variable);
-    map->container[index] = value;
+    map->container[index] = 1;
 }
 
-int64_t map_get(hashmap* map, char* variable){
+int is_defined(hashmap* map, char* variable){
     int index = hash(variable);
     return map->container[index];
 }
