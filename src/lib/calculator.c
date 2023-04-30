@@ -1,5 +1,6 @@
 #include "calculator.h"
 
+
 void calculator(char* input){
     static hashmap* map;
     if(map == NULL){

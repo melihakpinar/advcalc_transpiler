@@ -1,6 +1,9 @@
 #ifndef MATH_H
 #define MATH_H
 
+#include "printer.h"
+
+
 /*
 * @param: a: char*
 * @param: b: char*

@@ -1,5 +1,6 @@
 #include "validator.h"
 
+
 bool isAssignment(char* str, bool* error_flag){
     int equals_cnt = 0;
     int equal_index = 0;

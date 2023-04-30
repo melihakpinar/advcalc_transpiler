@@ -3,10 +3,12 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 
 #include "hashmap.h"
 #include "math.h"
 #include "validator.h"
+
 
 /*
 * This function is used to evaluate the expression.

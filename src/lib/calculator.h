@@ -10,6 +10,7 @@
 #include "validator.h"
 #include "evaluator.h"
 
+
 /*
 * This function is the main function of the calculator.
 * It takes a string as input and evaluates it.
