@@ -1,55 +1,94 @@
 #include "math.h"
 
-int64_t sum(int64_t a, int64_t b){
-    return a + b;
+#include "printer.h"
+
+int sum(char* a, char* b){
+    operation(ADDRESS, a, b, "add");
+    return ADDRESS++;
 }
 
-int64_t multiple(int64_t a, int64_t b){
-    return a * b;
+int multiple(char* a, char* b){
+    operation(ADDRESS, a, b, "mul");
+    return ADDRESS++;
 }
 
-int64_t substract(int64_t a, int64_t b){
-    return a - b;
+int substract(char* a, char* b){
+    operation(ADDRESS, a, b, "sub");
+    return ADDRESS++;
 }
 
-int64_t divide(int64_t a, int64_t b){
-    return a / b;
+int divide(char* a, char* b){
+    operation(ADDRESS, a, b, "adiv");
+    return ADDRESS++;
 }
 
-int64_t modulo(int64_t a, int64_t b){
-    return a % b;
+int modulo(char* a, char* b){
+    int division = divide(a, b);
+    char division_address[10];
+    sprintf(division_address, "%%%d", division);
+    int multiplication = multiple(b, division_address);
+    char multiplication_address[10];
+    sprintf(multiplication_address, "%%%d", multiplication);
+    return substract(a, multiplication_address);
 }
 
-int64_t band(int64_t a, int64_t b){
-    return a & b;
+int band(char* a, char* b){
+    operation(ADDRESS, a, b, "and");
+    return ADDRESS++;
 }
 
-int64_t bor(int64_t a, int64_t b){
-    return a | b;
+int bor(char* a, char* b){
+    operation(ADDRESS, a, b, "or");
+    return ADDRESS++;
 }
 
-int64_t bxor(int64_t a, int64_t b){
-    return a ^ b;
+int bxor(char* a, char* b){
+    operation(ADDRESS, a, b, "xor");
+    return ADDRESS++;
 }
 
-int64_t ls(int64_t a, int64_t i){
-    return a << i;
+int ls(char* a, char* i){
+    operation(ADDRESS, a, i, "shl");
+    return ADDRESS++;
 }
 
-int64_t rs(int64_t a, int64_t i){
-    return a >> i;
+int rs(char* a, char* i){
+    operation(ADDRESS, a, i, "ashr");
+    return ADDRESS++;
 }
 
-int64_t lr(int64_t a, int64_t i){
-    i %= 64ll;
-    return (a << i) | (a >> (64ll - i));
+int lr(char* a, char* b){
+    int mod = modulo(b, "32");
+    char mod_address[10];
+    sprintf(mod_address, "%%%d", mod);
+    int left = ls(a, mod_address);
+    char left_address[10];
+    sprintf(left_address, "%%%d", left);
+    int sub = substract("32", mod_address);
+    char sub_address[10];
+    sprintf(sub_address, "%%%d", sub);
+    int right = rs(a, sub_address);
+    char right_address[10];
+    sprintf(right_address, "%%%d", right);
+    return bor(left_address, right_address);
 }
 
-int64_t rr(int64_t a, int64_t i){
-    i %= 64ll;
-    return (a >> i) | (a << (64ll - i));
+int rr(char* a, char* b){
+    int mod = modulo(b, "32");
+    char mod_address[10];
+    sprintf(mod_address, "%%%d", mod);
+    int right = rs(a, mod_address);
+    char right_address[10];
+    sprintf(right_address, "%%%d", right);
+    int sub = substract("32", mod_address);
+    char sub_address[10];
+    sprintf(sub_address, "%%%d", sub);
+    int left = ls(a, sub_address);
+    char left_address[10];
+    sprintf(left_address, "%%%d", left);
+    return bor(left_address, right_address);
 }
 
-int64_t bnot(int64_t a){
-    return -1ll ^ a;
+int bnot(char* a){
+    return bxor(a, "-1");
 }
