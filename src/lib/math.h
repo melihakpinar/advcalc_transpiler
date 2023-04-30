@@ -1,96 +1,94 @@
 #ifndef MATH_H
 #define MATH_H
 
-#include <stdint.h>
-
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: sum of a and b
 */
-int64_t sum(int64_t a, int64_t b);
+int sum(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: multiplication of a and b
 */
-int64_t multiple(int64_t a, int64_t b);
+int multiple(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: substraction of a and b
 */
-int64_t substract(int64_t a, int64_t b);
+int substract(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: division of a and b
 */
-int64_t divide(int64_t a, int64_t b);
+int divide(char* a, char* b);
 
 /*
 * @param: a: int64_t
 * @param: b: int64_t
 * @return: modulo of a and b
 */
-int64_t modulo(int64_t a, int64_t b);
+int modulo(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: binary and of a and b
 */
-int64_t band(int64_t a, int64_t b);
+int band(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: binary or of a and b
 */
-int64_t bor(int64_t a, int64_t b);
+int bor(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: b: int64_t
+* @param: a: char*
+* @param: b: char*
 * @return: binary xor of a and b
 */
-int64_t bxor(int64_t a, int64_t b);
+int bxor(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: i: int64_t
+* @param: a: char*
+* @param: i: char*
 * @return: left shift of a by i
 */
-int64_t ls(int64_t a, int64_t i);
+int ls(char* a, char* i);
 
 /*
-* @param: a: int64_t
-* @param: i: int64_t
+* @param: a: char*
+* @param: i: char*
 * @return: right shift of a by i
 */
-int64_t rs(int64_t a, int64_t i);
+int rs(char* a, char* i);
 
 /*
-* @param: a: int64_t
-* @param: i: int64_t
+* @param: a: char*
+* @param: i: char*
 * @return: binary left rotate of a by i
 */
-int64_t lr(int64_t a, int64_t i);
+int lr(char* a, char* b);
 
 /*
-* @param: a: int64_t
-* @param: i: int64_t
+* @param: a: char*
+* @param: i: char*
 * @return: binary right rotate of a by i
 */
-int64_t rr(int64_t a, int64_t i);
+int rr(char* a, char* b);
 
 /*
-* @param: a: int64_t
+* @param: a: char*
 * @return: bitwise complement of a
 */
-int64_t bnot(int64_t a);
+int bnot(char* a);
 
 #endif

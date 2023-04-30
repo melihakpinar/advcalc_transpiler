@@ -35,6 +35,6 @@ void print(char* value){
     fprintf(output_file, "call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %s)\n", value);
 }
 
-void operation(char* address, char* left, char* right, char* op){
-    fprintf(output_file, "%%%s = %s i32 %%%s, %%%s\n", address, op, left, right);
+void operation(int address, char* left, char* right, char* op){
+    fprintf(output_file, "%%%d = %s i32 %%%s, %%%s\n", address, op, left, right);
 }

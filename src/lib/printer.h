@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+int ADDRESS = 1;
+
 void open_file(char* filename);
 
 void close_file();
@@ -17,6 +19,6 @@ void assign(char* variable, char* value);
 
 void print(char* address);
 
-void operation(char* address, char* left, char* right, char* op);
+void operation(int address, char* left, char* right, char* op);
 
 #endif
