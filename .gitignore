@@ -1,6 +1,5 @@
-advcalc
 .vscode
+advcalc2ir
 *.pdf
 *.ll
-advcalc2ir
 *.adv
