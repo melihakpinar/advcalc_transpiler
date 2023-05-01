@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 #include "lib/calculator.h"
-#include "lib/printer.h"
 
 
 void generate_output_filename(char* filename, char* output_filename){
