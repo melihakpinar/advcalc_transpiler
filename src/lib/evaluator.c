@@ -350,7 +350,7 @@ char* evaluate(char* expression, hashmap* variables, bool* error_flag, int* addr
             is_address[values_count] = 0;
             values[values_count++] = atoi(number);
         }
-        else if(expression[i] != ' '){
+        else if(expression[i] != ' ' && expression[i] != 13){
             *error_flag = true;
             return "";
         }
